@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyjbkavia766y"]
+
+[ext_resource type="Script" path="res://Movement_justin_dime.gd" id="1_u4ycl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_05xun"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hk732"]
+albedo_color = Color(0.431373, 0, 1, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_uyv3v"]
+material = SubResource("StandardMaterial3D_hk732")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6q7c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efvi5"]
+albedo_color = Color(0.0941176, 0.85098, 0.219608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i2aiw"]
+material = SubResource("StandardMaterial3D_efvi5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viffb"]
+albedo_color = Color(0.917647, 0, 0.972549, 1)
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_arrhb"]
+material = SubResource("StandardMaterial3D_viffb")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Background" type="Area3D" parent="."]
+
+[node name="Background 2-D" type="CollisionShape3D" parent="Background"]
+transform = Transform3D(480.482, 0, 0, 0, 480.482, 0, 0, 0, 480.482, 0, 0, 0)
+shape = SubResource("BoxShape3D_05xun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background/Background 2-D"]
+transform = Transform3D(-24.8503, 0, 0, 0, -11.9427, 0, 0, 0, -0.0252625, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_uyv3v")
+
+[node name="Justin Dime" type="CharacterBody3D" parent="."]
+transform = Transform3D(360.544, 0, 0, 0, 360.544, 0, 0, 0, 360.544, -4000, 0, 1000)
+script = ExtResource("1_u4ycl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Justin Dime"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.219806, 0, 0, 0)
+shape = SubResource("BoxShape3D_a6q7c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Justin Dime/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.883344, 0, 0, 0)
+mesh = SubResource("BoxMesh_i2aiw")
+skeleton = NodePath("")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7000)
+fov = 44.3
+far = 10000.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6421.27, 2068.43, 5724.47)
+light_color = Color(0, 1, 1, 1)
+light_energy = 0.355
+
+[node name="Floor" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3404.11, -544.326, 1000)
+
+[node name="Background 2-D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_05xun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Background 2-D"]
+transform = Transform3D(1192.47, 0, 0, 0, 1655.18, 0, 0, 0, 360, -185.709, -614.338, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_arrhb")
