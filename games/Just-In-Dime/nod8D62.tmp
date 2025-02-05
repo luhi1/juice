@@ -12,7 +12,6 @@ metallic = 1.0
 material = SubResource("StandardMaterial3D_hk732")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6q7c"]
-margin = 10.0
 size = Vector3(1, 1, 0.4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efvi5"]
@@ -48,7 +47,7 @@ script = ExtResource("1_u4ycl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Justin Dime"]
 shape = SubResource("BoxShape3D_a6q7c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Justin Dime"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Justin Dime/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.361562, 0, 0, 0)
 mesh = SubResource("BoxMesh_i2aiw")
 skeleton = NodePath("")
@@ -63,18 +62,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6421.27, 2068.43, 5724.47)
 light_color = Color(0, 1, 1, 1)
 light_energy = 0.355
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1192.47, 0, 0, 0, 1655.18, 0, 0, 0, 360, -3589.82, -1158.66, 1000)
-
-[node name="Background 2-D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00689745, 0.0123733, 0)
-shape = SubResource("BoxShape3D_05xun")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_arrhb")
-skeleton = NodePath("../Background 2-D")
-
 [node name="Floor" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3404.11, -544.326, 1000)
+
+[node name="Background 2-D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_05xun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Background 2-D"]
+transform = Transform3D(1192.47, 0, 0, 0, 1655.18, 0, 0, 0, 360, -185.709, -614.338, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_arrhb")
